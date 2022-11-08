@@ -3,7 +3,7 @@ O Bureau of Transportation Statistics do Departamento de Transportes dos EUA (DO
 
 A fonte primária dos dados está disponível no [kaggle](https://www.kaggle.com/datasets/usdot/flight-delays).
 
-Para rodar o notebook é necessário a criação de um diretório chamado `data` e rodar o script situado em [make_data](make_data/make_data.py)
+Para rodar o notebook é necessário a criação de um diretório chamado `data` e download dos dados que estão situados no kaggle, após isso é necessário rodar o script situado em [make_data](make_data/make_data.py)
 
 A versão das bibliotecas utilizadas pode ser encontrada no arquivo [`requirements.txt`](requirements.txt) e podem ser instaladas usando:
 
