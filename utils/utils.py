@@ -39,19 +39,20 @@ def grouped_delay(df, var, type="bar", order=True, metric="mean"):
         .sort_values("count", ascending=False)
     )
     data = data.assign(PROPORCAO=data["sum"] / data["count"])
-    prop_metric = data["PROPORCAO"].agg("mean")
+    prop_metric = data["PROPORCAO"].agg(metric)
     if order == True:
         data = data.sort_values(["PROPORCAO"], ascending=False)
     if type == "bar":
         sns.barplot(data=data, x=var, y="PROPORCAO")
-        plt.axhline(prop_metric, color="r")
+        plt.axhline(prop_metric, color="r", linestyle="--")
+        plt.annotate(metric, xy=(5, 0.385))
         plt.title("Proporção de Atrasos")
     else:
         sns.lineplot(data=data, x=var, y="PROPORCAO")
-        plt.axhline(prop_metric, color="r")
+        plt.axhline(prop_metric, color="r", linestyle="--")
+        plt.annotate(metric, xy=(5, 0.385))
         plt.title("Proporção de Atrasos")
         plt.legend(loc="upper right")
-
 
 def total_bar2(df, var, order=True):
     data = df.groupby([var], as_index=False).size()
