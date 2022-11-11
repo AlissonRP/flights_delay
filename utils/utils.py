@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 
 
 def grouped_delay2(df, var, type="bar", order=True, metric="mean"):
+    """
+    OLD
+    """
     data = df.groupby([var], as_index=False)["ATRASO"].sum()
     data = data.assign(PROPORCAO=data["ATRASO"] / data["ATRASO"].sum())
     prop_mean = data["PROPORCAO"].agg(metric)
@@ -32,6 +35,13 @@ def grouped_delay2(df, var, type="bar", order=True, metric="mean"):
 
 
 def grouped_delay(df, var, type="bar", order=True, metric="mean"):
+    """
+    df: DataFrame
+    var: Variable
+    type: Type of plot, default is bar
+    order: To order the columns of DataFrame
+    metric: metric to plot in horizontal line
+    """
     data = (
         df.groupby(var, as_index=False)["ATRASO"]
         .agg(["sum", "count"])
@@ -54,7 +64,11 @@ def grouped_delay(df, var, type="bar", order=True, metric="mean"):
         plt.title("Proporção de Atrasos")
         plt.legend(loc="upper right")
 
+
 def total_bar2(df, var, order=True):
+    """
+    OLD
+    """
     data = df.groupby([var], as_index=False).size()
     fig = px.bar(data, x=var, y="size", title="Total da variável " + var, color=var)
     if order == True:
@@ -68,6 +82,10 @@ def total_bar2(df, var, order=True):
 
 
 def total_bar(df, var, order=True):
+    """
+    df: DataFrame
+    var: Variable
+    """
     data = df.groupby([var], as_index=False).size()
     if order == True:
         data = data.sort_values(["size"], ascending=False)
@@ -76,6 +94,10 @@ def total_bar(df, var, order=True):
 
 
 def create_proportion(df, var):
+    """
+    df: DataFrame
+    var: Variable
+    """
     data = (
         df.groupby(var, as_index=False)["ATRASO"]
         .agg(["sum", "count"])
